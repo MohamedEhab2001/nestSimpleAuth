@@ -1,0 +1,82 @@
+# Docker Deployment Guide
+
+This guide focuses on deploying the Full Stack Authentication App using Docker.
+
+---
+
+## 🚀 Quick Start with Docker
+
+### Prerequisites
+- Docker and Docker Compose installed on your system
+- Download Docker Desktop from: https://www.docker.com/products/docker-desktop
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/MohamedEhab2001/EasyGenerator-MohamedEhab.git
+cd EasyGenerator-MohamedEhab
+```
+
+### 2. Create Environment Files
+
+#### Backend Environment (`backend/.env`)
+
+# .env
+```env
+MONGO_URI=mongodb://${username}:${password}@mongodb:27017/nest-auth?authSource=admin
+JWT_SECRET=your-super-secret-jwt-key-here
+JWT_EXPIRES_IN=7d
+```
+
+# .env.test
+```env
+MONGO_URI=mongodb://${username}:${password}@mongodb:27017/nest-auth-test?authSource=admin
+JWT_SECRET=your-super-secret-jwt-key-here
+JWT_EXPIRES_IN=7d
+```
+
+#### Frontend Environment (`frontend/.env`)
+```env
+VITE_API_BASE_URL=http://localhost:3000
+VITE_API_HOME=/signin
+```
+
+### 3. Run the Application
+
+```bash
+# Start all services (MongoDB, Backend API, Frontend)
+docker-compose up --build
+```
+
+### 4. Access the Application
+
+- **Frontend (React App)**: http://localhost:5173
+- **Backend API**: http://localhost:3000
+- **API Documentation (Swagger)**: http://localhost:3000/api
+- **MongoDB**: localhost:27017 (internal Docker network)
+
+### 5. Stop the Application
+
+```bash
+docker-compose down
+```
+
+---
+
+## 🔌 Service Ports
+
+| Service | Port | Description |
+|---------|------|-------------|
+| Frontend | 5173 | React development server |
+| Backend API | 3000 | NestJS API server |
+| MongoDB | 27017 | MongoDB database (internal) |
+
+---
+
+## 📁 API Endpoints
+
+- `POST /auth/signup` – Register new user
+- `POST /auth/signin` – Login and receive JWT token
+- `GET /user/me` – Get current user profile (requires authentication)
+
+---

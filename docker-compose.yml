@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mohamed
+      MONGO_INITDB_ROOT_PASSWORD: 99059459
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - mongo_net
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo_express_container
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_ADMINUSERNAME: mohamed
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 99059459
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: admin
+    depends_on:
+      - mongodb
+    networks:
+      - mongo_net
+    restart: always
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
+    container_name: nest_api_container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - mongo_net
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    env_file:
+      - ./frontend/.env
+    container_name: frontend_container
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+    networks:
+      - mongo_net
+    restart: always
+
+
+volumes:
+  mongodb_data:
+
+networks:
+  mongo_net:
+    driver: bridge
