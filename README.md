@@ -1,7 +1,7 @@
 # Docker Deployment Guide
 
 This guide focuses on deploying the Full Stack Authentication App using Docker.
-
+Note: This is a simple simulation for Authentication App, it is not recommended to use it in a production environment.
 ---
 
 ## 🚀 Quick Start with Docker
