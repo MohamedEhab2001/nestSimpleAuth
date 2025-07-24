@@ -14,7 +14,7 @@ This guide focuses on deploying the Full Stack Authentication App using Docker.
 
 ```bash
 git clone https://github.com/MohamedEhab2001/nestSimpleAuth.git
-cd EasyGenerator-MohamedEhab
+cd nestSimpleAuth
 ```
 
 ### 2. Create Environment Files
