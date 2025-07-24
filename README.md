@@ -37,7 +37,7 @@ JWT_EXPIRES_IN=7d
 
 #### Frontend Environment (`frontend/.env`)
 ```env
-VITE_API_BASE_URL=http://localhost:3000
+VITE_API_BASE_URL=http://localhost:4100
 VITE_API_HOME=/signin
 ```
 
@@ -51,8 +51,8 @@ docker-compose up --build
 ### 4. Access the Application
 
 - **Frontend (React App)**: http://localhost:5173
-- **Backend API**: http://localhost:3000
-- **API Documentation (Swagger)**: http://localhost:3000/api
+- **Backend API**: http://localhost:4100
+- **API Documentation (Swagger)**: http://localhost:4100/api
 - **MongoDB**: localhost:27017 (internal Docker network)
 
 ### 5. Stop the Application
@@ -68,7 +68,7 @@ docker-compose down
 | Service | Port | Description |
 |---------|------|-------------|
 | Frontend | 5173 | React development server |
-| Backend API | 3000 | NestJS API server |
+| Backend API | 4100 | NestJS API server |
 | MongoDB | 27017 | MongoDB database (internal) |
 
 ---

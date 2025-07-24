@@ -40,7 +40,7 @@ services:
       - ./backend/.env
     container_name: nest_api_container
     ports:
-      - "3000:3000"
+      - "4100:3000"
     depends_on:
       - mongodb
     networks:
